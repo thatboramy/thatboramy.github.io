@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class TableEventScheduleComponent implements OnInit {
   @Input() timeValues: string[] = [];
   @Input() venues: string[] = [];
-  @Input() eventMap: string[] = [];
+  @Input() eventMap = {};
 
   public venueLocationsDisplay: string[] = [];
   public timeValuesDisplay: string[] = [];
@@ -18,12 +18,23 @@ export class TableEventScheduleComponent implements OnInit {
 
   ngOnInit(): void {
     this.venueLocationsDisplay = ['time', ...this.venues];
-    this.timeValuesDisplay = this.timeValues;
-    console.log(this.venueLocationsDisplay)
     this.eventHashMap = this.eventMap;
-    console.log(this.eventHashMap)
+    this.timeValuesDisplay = this.timeValues.filter(time => {
+      return this.hasEvent(time)
+    });
   }
+  hasEvent(timeQuery: string) {
+    let hasEvent = false;
+    this.venues.forEach(room => {
+      if (this.eventHashMap[room]) {
+        if (this.eventHashMap[room][timeQuery]) {
 
+          hasEvent = true
+        }
+      }
+    })
+    return hasEvent;
+  }
   formatEventText(event: any) {
     if (event === undefined) {
       return '';

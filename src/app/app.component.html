@@ -5,8 +5,8 @@
       <mat-expansion-panel *ngFor="let venue of venueLocationGroupNames;let i = index">
         <mat-expansion-panel-header>{{venue}}</mat-expansion-panel-header>
         <div *ngFor="let floor of venueLocationGroup[i]; let j = index">
-          <div *ngIf="i === 0">
-            <h3>{{j === 0 ? 'First Floor': 'Second Floor'}}</h3>
+          <div *ngIf="i === 0" class="p-4">
+            <h1>{{j === 0 ? 'First Floor': 'Second Floor'}}</h1>
           </div>
 
           <div class="table-container">
@@ -25,8 +25,8 @@
       <mat-expansion-panel *ngFor="let venue of venueLocationGroupNames;let i = index">
         <mat-expansion-panel-header>{{venue}} </mat-expansion-panel-header>
         <div *ngFor="let floor of venueLocationGroup[i]; let j = index">
-          <div *ngIf="i === 0">
-            <h3>{{j === 0 ? 'First Floor': 'Second Floor'}}</h3>
+          <div *ngIf="i === 0" class="p-4">
+            <h1>{{j === 0 ? 'First Floor': 'Second Floor'}}</h1>
           </div>
 
           <div class="table-container">
@@ -45,8 +45,8 @@
       <mat-expansion-panel *ngFor="let venue of venueLocationGroupNames;let i = index">
         <mat-expansion-panel-header>{{venue}} </mat-expansion-panel-header>
         <div *ngFor="let floor of venueLocationGroup[i]; let j = index">
-          <div *ngIf="i === 0">
-            <h3>{{j === 0 ? 'First Floor': 'Second Floor'}}</h3>
+          <div *ngIf="i === 0" class="p-4">
+            <h1>{{j === 0 ? 'First Floor': 'Second Floor'}}</h1>
           </div>
 
           <div class="table-container">
