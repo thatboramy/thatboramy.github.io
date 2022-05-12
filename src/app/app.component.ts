@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { fridayData, saturdayData, sundayData } from './data';
+import { fridayData, fridayData2, saturdayData, sundayData } from './data';
 export interface PeriodicElement {
   name: string;
   position: number;
   weight: number;
   symbol: string;
 }
+
 
 export class Event {
   name: string = '';
@@ -31,7 +32,6 @@ export class AppComponent {
 
   northVenueLocation: string[] = [];
   northFirstFloorLocation: string[] = [];
-
   northFirstFloorLocationNoTime: string[] = [];
   northSecondFloorLocation: string[] = [];
   westVenueLocation: string[] = [];
@@ -41,20 +41,33 @@ export class AppComponent {
   timeValues: string[] = [];
 
   eventHashMap: any = {};
+  fridayHashMap: any = {};
   saturdayHashMap: any = {};
   sundayHashMap: any = {};
 
+  venueLocationGroup: any[] = [];
+  venueLocationGroupNames: string[] = [];
   constructor() {
     this.sanitizeData(fridayData);
+    this.serializeData(fridayData2, this.fridayHashMap)
     this.serializeData(saturdayData, this.saturdayHashMap);
     this.serializeData(sundayData, this.sundayHashMap);
 
+
+    this.groupVenues();
+    // sort the time
     this.timeValues.sort((a, b) => {
       a = this.convertTime12to24(a);
       b = this.convertTime12to24(b);
       return a > b ? 1 : a < b ? -1 : 0;
     });
   }
+
+  groupVenues() {
+    this.venueLocationGroupNames = ['North Building', 'West Building'];
+    this.venueLocationGroup = [[this.northFirstFloorLocation, this.northSecondFloorLocation], [this.westVenueLocation]];
+  }
+
   convertTime12to24(b: any): any {
     let currMin = 0;
     if (b !== '') {
@@ -177,16 +190,14 @@ export class AppComponent {
     this.northFirstFloorLocationNoTime = [...this.northVenueLocation.filter((loc) =>
       loc.includes('North 1')
     )];
-    this.northFirstFloorLocation = ['time', ...this.northVenueLocation.filter((loc) =>
+    this.northFirstFloorLocation = [...this.northVenueLocation.filter((loc) =>
       loc.includes('North 1')
     )];
-
-    this.northSecondFloorLocation = ['time', ...this.northVenueLocation.filter(
+    this.northSecondFloorLocation = [...this.northVenueLocation.filter(
       (loc) => loc.includes('North 2')
     )];
 
     this.specialVenueLocation = [
-      'time',
       ...this.venueLocation.filter(
         (room) =>
           room.includes('North') &&
@@ -199,7 +210,7 @@ export class AppComponent {
       ),
     ];
     this.westVenueLocation = [
-      'time',
+
       ...this.venueLocation.filter((room) => room.includes('West')),
     ];
 
