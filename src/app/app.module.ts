@@ -10,9 +10,11 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule, } from '@angular/material/tabs';
 
 import { MatCardModule, } from '@angular/material/card';
+import { TableEventScheduleComponent } from './table-event-schedule/table-event-schedule.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TableEventScheduleComponent
   ],
   imports: [
     BrowserModule,

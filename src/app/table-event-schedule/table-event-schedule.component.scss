@@ -1,0 +1,22 @@
+@import "../app.component.scss";
+.mat-row:nth-child(even) {
+  background-color: rgb(247, 248, 233);
+}
+
+.mat-row:nth-child(odd) {
+  background-color: rgb(224, 248, 204);
+}
+
+.w-200 {
+  width: 200px;
+}
+.w-50 {
+  width: 50px;
+}
+
+.cell-width {
+  width: 200px;
+}
+.time-cell {
+  width: 100px;
+}
