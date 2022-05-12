@@ -7,7 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatExpansionModule } from '@angular/material/expansion';
 
 import { MatTableModule } from '@angular/material/table';
-import { MatTabsModule } from '@angular/material/tabs';
+import { MatTabsModule, } from '@angular/material/tabs';
+
+import { MatCardModule, } from '@angular/material/card';
 @NgModule({
   declarations: [
     AppComponent
@@ -17,7 +19,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     BrowserAnimationsModule,
     MatTableModule,
     MatTabsModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

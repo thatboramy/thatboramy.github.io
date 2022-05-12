@@ -1,31 +1,56 @@
 <mat-tab-group>
   <mat-tab label="Friday">
     <mat-accordion>
-      <mat-expansion-panel hideToggle>
+      <mat-expansion-panel expanded>
         <mat-expansion-panel-header>
           <mat-panel-title>North Building </mat-panel-title>
         </mat-expansion-panel-header>
         <h3>First Floor</h3>
-        <table mat-table [dataSource]="timeValues">
-          <ng-container [matColumnDef]="column" *ngFor="let column of northFirstFloorLocation">
-            <th mat-header-cell *matHeaderCellDef [ngClass]="'w-75'">
-              {{ column }}
-            </th>
+        <mat-card>
 
-            <td mat-cell *matCellDef="let element" [ngClass]="'w-75'">
-              {{
-              column === 'time'
-              ? element
-              : eventHashMap[column][element]
-              ? formatText(eventHashMap[column][element])
-              : ''
-              }}
-            </td>
-          </ng-container>
+          <table mat-table [dataSource]="timeValues" style="border: 1px solid red;">
+            <ng-container matColumnDef="time" sticky>
+              <th mat-header-cell *matHeaderCellDef> Time </th>
+              <td mat-cell *matCellDef="let element"> {{element}} </td>
+            </ng-container>
+            <ng-container [matColumnDef]="column" *ngFor="let column of northFirstFloorLocationNoTime">
+              <th mat-header-cell *matHeaderCellDef [ngClass]="'w-200'">
+                {{ column }}
+              </th>
 
-          <tr mat-header-row *matHeaderRowDef="northFirstFloorLocation" [ngClass]="'w-100'"></tr>
-          <tr mat-row *matRowDef="let row; columns: northFirstFloorLocation"></tr>
-        </table>
+              <td mat-cell *matCellDef="let element" [ngClass]="'w-200'">
+                <div class="text-bold">
+
+                  {{
+                  column === 'time'
+                  ? element
+                  : eventHashMap[column][element]
+                  ? formatEventText(eventHashMap[column][element])
+                  : ''
+                  }}
+                </div>
+                <div>
+
+                  {{
+                  column === 'time'
+                  ? ''
+                  : eventHashMap[column][element]
+                  ? formatTimeText(eventHashMap[column][element])
+                  : ''
+                  }}
+                </div>
+              </td>
+            </ng-container>
+
+
+
+
+            <tr mat-header-row *matHeaderRowDef="northFirstFloorLocation; sticky : true" [ngClass]="'w-100'">
+            </tr>
+            <tr mat-row *matRowDef="let row; columns: northFirstFloorLocation"></tr>
+          </table>
+
+        </mat-card>
         <h3>Second Floor</h3>
         <table mat-table [dataSource]="timeValues">
           <ng-container [matColumnDef]="column" *ngFor="let column of northSecondFloorLocation">

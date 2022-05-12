@@ -31,6 +31,8 @@ export class AppComponent {
 
   northVenueLocation: string[] = [];
   northFirstFloorLocation: string[] = [];
+
+  northFirstFloorLocationNoTime: string[] = [];
   northSecondFloorLocation: string[] = [];
   westVenueLocation: string[] = [];
   specialVenueLocation: string[] = [];
@@ -172,16 +174,17 @@ export class AppComponent {
           )
       ),
     ];
-
-    this.northFirstFloorLocation = this.northVenueLocation.filter((loc) =>
+    this.northFirstFloorLocationNoTime = [...this.northVenueLocation.filter((loc) =>
       loc.includes('North 1')
-    );
-    this.northSecondFloorLocation = this.northVenueLocation.filter(
-      (loc) => loc.includes('North 2')
-    );
+    )];
+    this.northFirstFloorLocation = ['time', ...this.northVenueLocation.filter((loc) =>
+      loc.includes('North 1')
+    )];
 
-    console.log(this.northFirstFloorLocation);
-    console.log(this.northSecondFloorLocation);
+    this.northSecondFloorLocation = ['time', ...this.northVenueLocation.filter(
+      (loc) => loc.includes('North 2')
+    )];
+
     this.specialVenueLocation = [
       'time',
       ...this.venueLocation.filter(
@@ -209,6 +212,21 @@ export class AppComponent {
       return '';
     } else {
       return `${event.name}\n${event.startTime}-${event.endTime}`;
+    }
+  }
+
+  formatEventText(event: any) {
+    if (event === undefined) {
+      return '';
+    } else {
+      return `${event.name}`;
+    }
+  }
+  formatTimeText(event: any) {
+    if (event === undefined) {
+      return '';
+    } else {
+      return `${event.startTime}-${event.endTime}`;
     }
   }
 }
