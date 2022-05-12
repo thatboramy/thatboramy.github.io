@@ -64,8 +64,8 @@ export class AppComponent {
   }
 
   groupVenues() {
-    this.venueLocationGroupNames = ['North Building', 'West Building'];
-    this.venueLocationGroup = [[this.northFirstFloorLocation, this.northSecondFloorLocation], [this.westVenueLocation]];
+    this.venueLocationGroupNames = ['North Building', 'West Building', 'Special'];
+    this.venueLocationGroup = [[this.northFirstFloorLocation, this.northSecondFloorLocation], [this.westVenueLocation], [this.specialVenueLocation]];
   }
 
   convertTime12to24(b: any): any {
@@ -210,12 +210,11 @@ export class AppComponent {
       ),
     ];
     this.westVenueLocation = [
-
       ...this.venueLocation.filter((room) => room.includes('West')),
     ];
 
-    this.venueLocation = ['time', ...this.venueLocation];
-    this.headerDisplayCoumn = ['time', ...this.venueLocation];
+    // this.venueLocation = ['time', ...this.venueLocation];
+    // this.headerDisplayCoumn = ['time', ...this.venueLocation];
   }
 
   formatText(event: any) {

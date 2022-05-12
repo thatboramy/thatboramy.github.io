@@ -1,9 +1,9 @@
 <mat-tab-group>
-  <mat-tab label="Automated Friday">
+  <mat-tab label="Friday">
 
     <mat-accordion>
       <mat-expansion-panel *ngFor="let venue of venueLocationGroupNames;let i = index">
-        <mat-expansion-panel-header>{{venue}} {{i}}</mat-expansion-panel-header>
+        <mat-expansion-panel-header>{{venue}}</mat-expansion-panel-header>
         <div *ngFor="let floor of venueLocationGroup[i]; let j = index">
           <div *ngIf="i === 0">
             <h3>{{j === 0 ? 'First Floor': 'Second Floor'}}</h3>
@@ -20,11 +20,10 @@
       </mat-expansion-panel>
     </mat-accordion>
   </mat-tab>
-  <mat-tab label="Automated Saturday">
-
+  <mat-tab label="Saturday">
     <mat-accordion>
       <mat-expansion-panel *ngFor="let venue of venueLocationGroupNames;let i = index">
-        <mat-expansion-panel-header>{{venue}} {{i}}</mat-expansion-panel-header>
+        <mat-expansion-panel-header>{{venue}} </mat-expansion-panel-header>
         <div *ngFor="let floor of venueLocationGroup[i]; let j = index">
           <div *ngIf="i === 0">
             <h3>{{j === 0 ? 'First Floor': 'Second Floor'}}</h3>
@@ -41,9 +40,28 @@
       </mat-expansion-panel>
     </mat-accordion>
   </mat-tab>
+  <mat-tab label="Sunday">
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let venue of venueLocationGroupNames;let i = index">
+        <mat-expansion-panel-header>{{venue}} </mat-expansion-panel-header>
+        <div *ngFor="let floor of venueLocationGroup[i]; let j = index">
+          <div *ngIf="i === 0">
+            <h3>{{j === 0 ? 'First Floor': 'Second Floor'}}</h3>
+          </div>
 
+          <div class="table-container">
+            <div>
+              <table-event-schedule [timeValues]="timeValues" [venues]="floor" [eventMap]="sundayHashMap">
+              </table-event-schedule>
+            </div>
+          </div>
+
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-tab>
   <!--Old Iteration-->
-  <mat-tab label="Friday">
+  <!-- <mat-tab label="Friday">
     <mat-accordion>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
@@ -51,11 +69,7 @@
         </mat-expansion-panel-header>
         <h3>First Floor</h3>
         <div class="table-container">
-          <div>
-            <table-event-schedule [timeValues]=" timeValues" [venues]="northFirstFloorLocationNoTime"
-              [eventMap]="eventHashMap">
-            </table-event-schedule>
-          </div>
+
         </div>
         <div class="table-container">
           <div>
@@ -97,7 +111,7 @@
           </div>
         </div>
         <h3>Second Floor</h3>
-        <!-- <div class="table-container">
+        <div class="table-container">
 
           <table mat-table [dataSource]="timeValues">
             <ng-container [matColumnDef]="column" *ngFor="let column of northSecondFloorLocation">
@@ -126,7 +140,7 @@
             <tr mat-row *matRowDef="let row; columns: northSecondFloorLocation"></tr>
           </table>
 
-        </div> -->
+        </div>
       </mat-expansion-panel>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
@@ -355,7 +369,6 @@
               ? formatText(eventHashMap[column][element])
               : ''
               }}
-              <!-- {{ getEvent(column, element) }} -->
             </td>
           </ng-container>
 
@@ -364,5 +377,5 @@
         </table>
       </mat-expansion-panel>
     </mat-accordion>
-  </mat-tab>
+  </mat-tab> -->
 </mat-tab-group>

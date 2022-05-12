@@ -19,7 +19,9 @@ export class TableEventScheduleComponent implements OnInit {
   ngOnInit(): void {
     this.venueLocationsDisplay = ['time', ...this.venues];
     this.timeValuesDisplay = this.timeValues;
+    console.log(this.venueLocationsDisplay)
     this.eventHashMap = this.eventMap;
+    console.log(this.eventHashMap)
   }
 
   formatEventText(event: any) {
