@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 @Component({
   selector: 'table-event-schedule',
   templateUrl: './table-event-schedule.component.html',
-  styleUrls: ['./table-event-schedule.component.scss']
+  styleUrls: ['./table-event-schedule.component.scss'],
 })
 export class TableEventScheduleComponent implements OnInit {
   @Input() timeValues: string[] = [];
@@ -15,27 +15,39 @@ export class TableEventScheduleComponent implements OnInit {
   public timeValuesDisplay: string[] = [];
   public eventHashMap: any = {};
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
-    this.venueLocationsDisplay = ['time', ...this.venues];
     this.eventHashMap = this.eventMap;
-    this.timeValuesDisplay = this.timeValues.filter(time => {
-      return this.hasEvent(time)
+    const availableVenueLocations = this.venues.filter((room) => {
+      return this.hasEventAtLocation(room);
+    });
+    this.venueLocationsDisplay = ['time', ...availableVenueLocations];
+    this.timeValuesDisplay = this.timeValues.filter((time) => {
+      return this.hasEventAtTime(time);
     });
   }
-  hasEvent(timeQuery: string) {
+
+  hasEventAtLocation(roomQuery: string) {
+    if (this.eventHashMap[roomQuery]) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  hasEventAtTime(timeQuery: string) {
     let hasEvent = false;
-    this.venues.forEach(room => {
+    this.venues.forEach((room) => {
       if (this.eventHashMap[room]) {
         if (this.eventHashMap[room][timeQuery]) {
-
-          hasEvent = true
+          hasEvent = true;
         }
       }
-    })
+    });
     return hasEvent;
   }
+
   formatEventText(event: any) {
     if (event === undefined) {
       return '';

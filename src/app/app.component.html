@@ -1,14 +1,3 @@
-<h3>Special Venues</h3>
-
-<div class="table-container-mobile-view">
-  <div>
-    <table-event-schedule [isMobile]="true" [timeValues]="timeValues" [venues]="SpecialVenues"
-      [eventMap]="fridayHashMap">
-    </table-event-schedule>
-  </div>
-</div>
-
-
 <div expanded *ngFor="let venue of venueLocationGroupNames;let i = index">
   <h3>{{venue.name}}</h3>
   <div *ngFor="let miniVenue of venue.subVenues; let j = index">
