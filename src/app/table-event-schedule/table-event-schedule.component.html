@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="timeValuesDisplay">
+<table mat-table class="pc-view" [dataSource]="timeValuesDisplay" *ngIf="!isMobile; else mobileViewTable">
 
   <ng-container matColumnDef="time" sticky>
     <th mat-header-cell *matHeaderCellDef>
@@ -39,3 +39,57 @@
   </tr>
   <tr mat-row *matRowDef="let row; columns:venueLocationsDisplay"></tr>
 </table>
+
+<ng-template #mobileViewTable>
+  Is Mobile
+  <div class="mobile-view">
+
+    <table mat-table [dataSource]="timeValuesDisplay">
+
+      <ng-container matColumnDef="time">
+        <th mat-header-cell *matHeaderCellDef>
+          Time
+        </th>
+
+        <td mat-cell *matCellDef="let element">
+          <div class="text-bold time-cell">
+            {{element}}
+
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container [matColumnDef]="column" *ngFor="let column of venues">
+        <th mat-header-cell *matHeaderCellDef [ngClass]="'w-200'">
+          {{ column }}
+        </th>
+
+        <td mat-cell *matCellDef="let element" [ngClass]="'w-200'">
+
+          <div class=" cell-width">
+            <span>
+
+              {{ eventHashMap[column]
+              ? formatEventText(eventHashMap[column][element])
+              : ''
+              }}
+            </span>
+            <div class="text-bold">
+
+              {{ eventHashMap[column]
+              ? formatTimeText(eventHashMap[column][element])
+              : ''
+              }}
+            </div>
+          </div>
+
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="venueLocationsDisplay; sticky : true">
+      </tr>
+      <tr mat-row *matRowDef="let row; columns:venueLocationsDisplay"></tr>
+    </table>
+
+  </div>
+</ng-template>

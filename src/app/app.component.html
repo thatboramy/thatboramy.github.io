@@ -1,4 +1,25 @@
 <mat-tab-group>
+  <mat-tab label="Friday - Mobile View">
+
+    <div expanded *ngFor="let venue of venueLocationGroupNames;let i = index">
+      <h3>{{venue}}</h3>
+      <div *ngFor="let floor of venueLocationGroup[i]; let j = index">
+        <div *ngIf="i === 0" class="p-4">
+          <h1>{{j === 0 ? 'First Floor': 'Second Floor'}}</h1>
+        </div>
+
+        <div class="table-container-mobile-view">
+          <div>
+            <table-event-schedule [isMobile]="true" [timeValues]="timeValues" [venues]="floor"
+              [eventMap]="fridayHashMap">
+            </table-event-schedule>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </mat-tab>
   <mat-tab label="Friday">
 
     <mat-accordion>

@@ -9,6 +9,7 @@ export class TableEventScheduleComponent implements OnInit {
   @Input() timeValues: string[] = [];
   @Input() venues: string[] = [];
   @Input() eventMap = {};
+  @Input() isMobile = false;
 
   public venueLocationsDisplay: string[] = [];
   public timeValuesDisplay: string[] = [];

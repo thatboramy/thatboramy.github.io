@@ -5,17 +5,16 @@ table {
   width: 100%;
 }
 
-.text-bold {
-  font-weight: bold;
-  font-size: small;
-}
-
 .table-container {
   display: flex;
   overflow: auto;
   margin: 16px;
   width: 100%;
   max-height: 55rem;
+  .text-bold {
+    font-weight: bold;
+    font-size: small;
+  }
 
   .mat-row:nth-child(even) {
     background-color: rgb(247, 248, 233);
@@ -39,6 +38,72 @@ table {
     width: 75px;
 
     font-size: small;
+  }
+}
+
+.table-container-mobile-view {
+  display: flex;
+  overflow: auto;
+  margin: 0px;
+  width: 100%;
+  max-height: 55rem;
+
+  .text-bold {
+    font-size: 11px;
+    font-weight: bold;
+  }
+  .table-container {
+    display: flex;
+    overflow: auto;
+    margin: 16px;
+    width: 1000px;
+    max-height: 55rem;
+
+    .mat-row:nth-child(even) {
+      background-color: rgb(247, 248, 233);
+    }
+
+    .mat-row:nth-child(odd) {
+      background-color: rgb(224, 248, 204);
+    }
+
+    .w-200 {
+      width: 200px;
+    }
+    .w-50 {
+      width: 50px;
+    }
+
+    .cell-width {
+      width: 200px;
+    }
+    .time-cell {
+      width: 75px;
+      font-size: 11px;
+    }
+  }
+  .mat-row:nth-child(even) {
+    background-color: rgb(247, 248, 233);
+  }
+
+  .mat-row:nth-child(odd) {
+    background-color: rgb(224, 248, 204);
+  }
+
+  .w-200 {
+    width: 200px;
+  }
+  .w-50 {
+    width: 50px;
+  }
+
+  .cell-width {
+    width: 200px;
+  }
+  .time-cell {
+    width: 25px;
+
+    font-size: 11px;
   }
 }
 
