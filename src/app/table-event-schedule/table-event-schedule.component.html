@@ -19,7 +19,8 @@
     </th>
 
     <td mat-cell *matCellDef="let element" [ngClass]="'w-200'">
-
+      test
+      <!-- 
       <div class="text-bold cell-width">
         {{ eventHashMap[column]
         ? formatEventText(eventHashMap[column][element])
@@ -31,7 +32,7 @@
         ? formatTimeText(eventHashMap[column][element])
         : ''
         }}
-      </div>
+      </div> -->
     </td>
   </ng-container>
 
@@ -46,41 +47,46 @@
 
     <table mat-table [dataSource]="timeValuesDisplay">
 
-      <ng-container matColumnDef="time">
+      <ng-container matColumnDef="time" sticky>
         <th mat-header-cell *matHeaderCellDef>
           Time
         </th>
 
-        <td mat-cell *matCellDef="let element">
+        <td mat-cell *matCellDef="let element; let i = index; let last = last">
           <div class="text-bold time-cell">
             {{element}}
-
+            {{!last ? '- ' + timeValuesDisplay[i +1]: ''}}
           </div>
         </td>
       </ng-container>
 
       <ng-container [matColumnDef]="column" *ngFor="let column of venues">
-        <th mat-header-cell *matHeaderCellDef [ngClass]="'w-200'">
+        <th mat-header-cell *matHeaderCellDef [ngClass]="['w-200', 'header-row']">
           {{ column }}
         </th>
 
-        <td mat-cell *matCellDef="let element" [ngClass]="'w-200'">
+        <td mat-cell *matCellDef="let time" [ngClass]="'w-200'" [ngClass]="{
+            'starting-cell': eventHashMap[column][time],
+            'cell-white': somethingHappening(column,time)}
+            ">
 
-          <div class=" cell-width">
+          <div class="cell-width">
+
             <span>
 
-              {{ eventHashMap[column]
-              ? formatEventText(eventHashMap[column][element])
+              {{
+              isStartTime(time) && eventHashMap[column]
+              ? formatEventText(eventHashMap[column][time])
               : ''
               }}
             </span>
-            <div class="text-bold">
-
-              {{ eventHashMap[column]
-              ? formatTimeText(eventHashMap[column][element])
+            <!-- <div class="text-bold">
+              {{
+              isStartTime(time) && eventHashMap[column]
+              ? formatTimeText(eventHashMap[column][time])
               : ''
               }}
-            </div>
+            </div> -->
           </div>
 
         </td>

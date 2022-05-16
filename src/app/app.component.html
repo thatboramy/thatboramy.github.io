@@ -1,16 +1,23 @@
-<div expanded *ngFor="let venue of venueLocationGroupNames;let i = index">
-  <h3>{{venue.name}}</h3>
-  <div *ngFor="let miniVenue of venue.subVenues; let j = index">
-    {{miniVenue.subVenueTitle}}
-    <div class="table-container-mobile-view">
-      <div>
-        <table-event-schedule [isMobile]="true" [timeValues]="timeValues" [venues]="miniVenue.rooms"
-          [eventMap]="fridayHashMap">
-        </table-event-schedule>
+<mat-tab-group>
+  <mat-tab *ngFor="let tabs of tabsInfo;let i = index" label="{{tabs.name}}">
+
+    <div expanded *ngFor="let venue of venueLocationGroupNames;let i = index">
+      <div class="room-category">{{venue.name}}</div>
+      <div *ngFor="let miniVenue of venue.subVenues; let j = index">
+        <div class="room-category">{{miniVenue.subVenueTitle}}</div>
+        <div class="table-container-mobile-view ">
+          <div class="border-table">
+            <table-event-schedule [isMobile]="true" [timeValues]="timeValues" [venues]="miniVenue.rooms"
+              [showTimeBlock]="!miniVenue.subVenueTitle.includes('Halls') || !miniVenue.subVenueTitle.includes('Gaming')"
+              [eventMap]="tabs.map">
+            </table-event-schedule>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+  </mat-tab>
+</mat-tab-group>
+
 
 <mat-tab-group *ngIf="!turnOffTabView">
   <mat-tab label="Friday - Mobile View">

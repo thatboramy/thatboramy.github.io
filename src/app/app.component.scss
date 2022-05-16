@@ -4,7 +4,20 @@ p {
 table {
   width: 100%;
 }
-
+.border-table {
+  border: 1px solid grey;
+}
+.building-name {
+  font-weight: bold;
+  font-size: larger;
+  padding: 8px;
+}
+.room-category {
+  padding: 8px;
+  text-decoration: underline;
+  margin: 16px;
+  font-size: large;
+}
 .table-container {
   display: flex;
   overflow: auto;
@@ -26,6 +39,7 @@ table {
 
   .w-200 {
     width: 200px;
+    padding-left: 4px;
   }
   .w-50 {
     width: 50px;
@@ -46,7 +60,6 @@ table {
   overflow: auto;
   margin: 0px;
   width: 100%;
-  max-height: 55rem;
 
   .text-bold {
     font-size: 11px;
@@ -57,7 +70,6 @@ table {
     overflow: auto;
     margin: 16px;
     width: 1000px;
-    max-height: 55rem;
 
     .mat-row:nth-child(even) {
       background-color: rgb(247, 248, 233);
@@ -76,10 +88,12 @@ table {
 
     .cell-width {
       width: 200px;
+      padding-left: 8px;
     }
     .time-cell {
       width: 75px;
       font-size: 11px;
+      padding-left: 8px;
     }
   }
   .mat-row:nth-child(even) {

@@ -27,14 +27,16 @@
 }
 
 .mobile-view {
-  .mat-row:nth-child(even) {
-    background-color: rgb(247, 248, 233);
+  .cell-white {
+    background: white;
+    border-top: none;
+    border-bottom: none;
+    border-left: 1px solid rgba(0, 0, 0, 0.12);
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
   }
-
-  .mat-row:nth-child(odd) {
-    background-color: rgb(224, 248, 204);
+  .mat-row {
+    background: rgb(206, 206, 206);
   }
-
   .w-200 {
     width: 200px;
   }
@@ -45,15 +47,28 @@
   .cell-width {
     font-size: 12px;
     width: 150px;
+    padding: 8px;
+  }
+
+  .starting-cell {
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
   }
   .time-cell {
-    width: 50px;
+    width: 60px;
   }
+
   .mat-column-time {
     font-size: 11px;
+    background: rgb(248, 246, 212);
   }
   .text-bold {
     font-size: 11px;
     font-weight: bold;
+  }
+
+  .header-row {
+    background-color: rgb(248, 246, 212);
+    border: 1px solid grey;
+    padding-left: 12px;
   }
 }
